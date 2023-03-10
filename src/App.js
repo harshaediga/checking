@@ -1,39 +1,29 @@
-import React,{useState} from 'react';
-import './App.css';
+import React,{useState} from 'react'
 
 const App = () => {
-  const[input,setinput]=useState('');
-  const[result,setresult]=useState(0);
+  const City=[
+    {name:"smp",id:'1'},
+    {name:'atp',id:'2'},
+    {name:'ptp',id:'3'}
+  
+  ]
+  const[search,setsearch]=useState("");
   const handler=e=>{
-    setinput(e.target.value)
+    setsearch(e.target.value)
   }
-  return (
+  return ( 
     <div>
       <center>
-        <input class='output' type="text" value={input} name="input" onChange={handler}  /><br/>
-        <button onClick={()=>setresult(eval(input))} class='box'> result</button>
-        <h2>result is:{result}</h2>
-        <button onClick={()=>setinput(input+'1')}>1 </button>
-<button onClick={()=>setinput(input+'2')}>2 </button>
-<button onClick={()=>setinput(input+'3')}>3 </button>
-<button onClick={()=>setinput(input+'4')}>4 </button>
-<button onClick={()=>setinput(input+'5')}>5 </button><br/>
-
-
-<button onClick={()=>setinput(input+'6')}>6 </button>
-<button onClick={()=>setinput(input+'7')}>7 </button>
-<button onClick={()=>setinput(input+'8')}>8 </button>
-<button onClick={()=>setinput(input+'9')}>9 </button>
-<button onClick={()=>setinput(input+'10')}>10 </button><br/>
-
-
-
-<button class='operator'onClick={()=>setinput(input+'+')}>+ </button>
-<button class='operator'onClick={()=>setinput(input+'-')}>- </button>
-<button class='operator' onClick={()=>setinput(input+'*')}>* </button>
-<button class='operator'onClick={()=>setinput(input+'/')}>/ </button>
-<button class='special'onClick={()=>setinput('')}>clr </button><br/>
+      <h4> enter your city:</h4>
+      <input type='text' value={search} onChange={handler}/><br/>
+      {City.filter(data=>data.name.toLowerCase().includes(search.toLowerCase())).map(data=>{
+        return<div style={{"border":'2px solid black','padding':'10px','margin':'10px','maxwidth':'70%'}}>
+          {data.name}
+        </div>
+      })}
+      
       </center>
+      
     </div>
   )
 }
