@@ -1,13 +1,11 @@
-import React from 'react'
-import {UserContext} from'./App.js';
+import React,{useContext} from 'react'
+import {store} from './App';
 
 const ComponentC = () => {
+    const [data,setdata]=useContext(store)
   return (
     <div>
-      <UserContext.Consumer>
-        {value=><div>{value}</div>}
-
-      </UserContext.Consumer>
+      ComponentC {data}
     </div>
   )
 }
