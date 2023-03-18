@@ -1,34 +1,12 @@
-button{
-  width:80px;
-  height:90px;
-  font-size:26px;
-  cursor:pointer;
-  border:none;
-  padding:5px;
-  margin:4px;
-  background:grey;
-}
-.output{
-  outline:none;
-  border:none;
-  width:320px;
-  height:90px;
-  font-size:32px;
-  padding:2px;
-  background:yellow;
-  border-top-left-radius:6px;
-  border-top-right-radius:6px;
-  background:grey;
-}
-.operator{
-  background:orange;
-  border-top-left-radius:6px;
-  border-top-right-radius:6px;
+ul{
+  list-style-type:none;
+  margin:50px;
+  
 
+  
 }
-.special{
-  background:blue;
-}
-.box{
-  background:red;
+li{
+  float:right;
+  display:block;
+  background-color: #dddddd;
 }

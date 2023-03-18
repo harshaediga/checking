@@ -1,21 +1,25 @@
-import React,{useState,useEffect} from 'react'
-
+import React from 'react';
+import Navbar from './Navbar.js';
+import{BrowserRouter,Route} from "react-router-dom";
+import Switch from 'react-switch';
+import Home from './Home';
+import Dashboard from './Dashboard';
+import About from './About';
 const App = () => {
-  const[data,SetData]=useState([])
-  useEffect(()=>{
-    fetch('https://jsonplaceholder.typicode.com/posts/1/comments').then(
-      response=>response.json()
-    ).then(json=>SetData(json))
-  },[])
-
-  
   return (
     <div>
-      {data.map(item=><li key={item.id}>{item.name}</li>)}
+      <BrowserRouter>
+        
+           <Navbar/>
+        <Switch>
+          <Route path="/" exact component={Home}/>
+          <Route path="/Dashboard" exact component={Dashboard}/>
+          <Route path="/about" exact component={About}/>
+        </Switch>
+      </BrowserRouter>
       
     </div>
   )
-
-  }
+}
 
 export default App
