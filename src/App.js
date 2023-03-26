@@ -1,23 +1,34 @@
-import React from 'react';
-import Navbar from './Navbar.js';
-import{BrowserRouter,Route} from "react-router-dom";
-import Switch from 'react-switch';
-import Home from './Home';
-import Dashboard from './Dashboard';
-import About from './About';
+import React,{useState}from 'react'
+
 const App = () => {
+  
+    const[data,setData]=useState(
+      {
+        Username:'',
+        password:''
+      })
+      const{Username,password}=data;
+
+  
+  const ChangeHandler=e=>
+  {
+   setData({...data,[e.target.name]:[e.target.value]})
+  }
+  const Handler=e=>{
+    e.preventDefault();
+    console.log(data);
+  }
   return (
     <div>
-      <BrowserRouter>
-        
-           <Navbar/>
-        <Switch>
-          <Route path="/" exact component={Home}/>
-          <Route path="/Dashboard" exact component={Dashboard}/>
-          <Route path="/about" exact component={About}/>
-        </Switch>
-      </BrowserRouter>
       
+      <center>
+        <h1>Login Form</h1>
+        <form onSubmit={Handler}>
+          username:<input type="text" name="Username" value={Username} onChange={ChangeHandler}/><br/>
+          password:<input type="password" name="password" value={password} onChange={ChangeHandler}/><br/><br/>
+          <input type="submit" name="submit"/>
+        </form>
+      </center>
     </div>
   )
 }
