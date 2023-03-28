@@ -1,33 +1,41 @@
-import React,{useState}from 'react'
+import React,{useState} from 'react'
 
 const App = () => {
-  
-    const[data,setData]=useState(
-      {
-        Username:'',
-        password:''
-      })
-      const{Username,password}=data;
-
-  
-  const ChangeHandler=e=>
-  {
-   setData({...data,[e.target.name]:[e.target.value]})
+  const[task,settask]=useState('');
+  const[todos,settodos]=useState([]);
+  const changehandler=e=>{
+    settask(e.target.value)
   }
-  const Handler=e=>{
+  const submit=e=>{
     e.preventDefault();
-    console.log(data);
+    const newtodos=[...todos,task]
+    settodos(newtodos); 
+    settask('');
+  }
+  const deletehandler=(indexvalue)=>{
+    const newTodos=todos.filter((todo,index)=>index!==indexvalue);
+    settodos(newTodos)
   }
   return (
     <div>
-      
       <center>
-        <h1>Login Form</h1>
-        <form onSubmit={Handler}>
-          username:<input type="text" name="Username" value={Username} onChange={ChangeHandler}/><br/>
-          password:<input type="password" name="password" value={password} onChange={ChangeHandler}/><br/><br/>
-          <input type="submit" name="submit"/>
-        </form>
+        <div classname="card">
+          <div classname="cardbody">
+            <h5 classname="card-title"> Todo Management Application</h5>
+            <form onSubmit={submit}>
+              <input type="text" name="Task" value={task} onChange={changehandler} />&nbsp;&nbsp;
+              <input type="Submit" name="Add" value="Add"/>
+
+            </form>
+            {todos.map((todo,index)=>
+                  <div key={index}>
+            <h5> {todo}&nbsp;&nbsp;<button onClick={()=> deletehandler(index)}>Delete</button></h5>
+            </div>
+        )}
+      
+          </div>
+
+        </div>
       </center>
     </div>
   )
